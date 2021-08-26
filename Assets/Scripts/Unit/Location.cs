@@ -4,7 +4,22 @@ public class Location
 {
     public World world;
     public Chunk chunk;
-    public Vector2 postion;
+    public Vector2 postion
+    {
+        get
+        {
+            return postion;
+        }
+        set
+        {
+            value.x = Mathf.Max(0, value.x);
+            value.x = Mathf.Min(15, value.x);
+            value.y= Mathf.Max(0, value.y);
+            value.y = Mathf.Min(15, value.y);
+            postion = value;
+        }
+
+    }
 
     public Location(World world, Chunk chunk, Vector2 postion)
     {

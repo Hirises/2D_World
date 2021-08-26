@@ -6,21 +6,32 @@ public class Chunk {
     public World world;
     public Vector2 postion;
     public Block[,] blocks;
+    private bool isload;
 
     public Chunk(World world, Vector2 postion)
     {
         this.world = world;
         this.postion = postion;
+        isload = false;
         Block[,] blocks = new Block[16, 16];
-        for(int x = 0; x < 16; x++)
-        {
-
-        }
+        //TODO blocks ÃÊ±âÈ­
     }
 
     public Chunk(World world, Vector2 postion, Block[,] blocks) : this(world, postion)
     {
         this.blocks = blocks;
+    }
+
+    public void SetBlock(Block block, Location location)
+    {
+        int x = (int)Mathf.Round(location.postion.x);
+        int y = (int)Mathf.Round(location.postion.y);
+        if (isload)
+        {
+            Block previous = blocks[x, y];
+            previous
+        }
+        blocks[x, y] = block;
     }
 
     public override bool Equals(object obj)

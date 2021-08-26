@@ -1,20 +1,41 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    static ArrayList generater = new ArrayList();
+    private static Dictionary<string, World> worlds;
+    private static Player player;
 
-    private void Awake()
+    public static World GetWorld(string name)
     {
-        generateWorld();
+        worlds.TryGetValue(name, out World output);
+        return output;
     }
 
-    public static void generateWorld()
+    public static bool AddWorld(string name, World world)
     {
-        foreach (WorldGenerater gen in generater)
-        {
-            gen.generate();
-        }
+        if (worlds.ContainsKey(name)) { return false; }
+        worlds.Add(name, world);
+        return true;
+    }
+
+    public static bool RemoveWorld(string name)
+    {
+        if(!worlds.ContainsKey(name)) { return false; }
+        worlds.Remove(name);
+        return true;
+    }
+
+    public static bool RemoveWorld(World world)
+    {
+        if (!worlds.ContainsValue(world)) { return false; }
+        worlds.Remove(world.GetName());
+        return true;
+    }
+
+    public static Player GetPlayer()
+    {
+        return player;
     }
 }

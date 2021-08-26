@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class World : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private string worldName;
+    private Dictionary<Pair<int, int>, Chunk> chunks;
+
+    public World(string name)
     {
-        
+        this.worldName = name;
+        chunks = new Dictionary<Pair<int, int>, Chunk>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public string GetName()
     {
-        
+        return worldName;
+    }
+
+    public static void SetBlock(Block block, Location location)
+    {
+        location.chunk.SetBlock(block, location);
+    }
+
+    public override bool Equals(object other)
+    {
+        World target = (World)other;
+        return worldName.Equals(target.worldName);
+    }
+
+    public override string ToString()
+    {
+        return worldName;
     }
 }
