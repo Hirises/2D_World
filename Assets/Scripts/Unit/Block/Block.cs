@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using NaughtyAttributes;
 
-public class Block
+public class Block : MonoBehaviour
 {
     [SerializeField]
     [ReadOnly]
-    private int x;
-    [SerializeField]
-    [ReadOnly]
-    private int y;
+    private Vector2 postion;
     [SerializeField]
     [ReadOnly]
     private Material material;
@@ -22,4 +19,8 @@ public class Block
     [ReadOnly]
     private int curVariants;
 
+    public Block(Material material, Vector2 postion)
+    {
+        
+    }
 }
