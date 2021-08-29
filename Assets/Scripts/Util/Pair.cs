@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Pair<X, Y> : System.ICloneable
 {
-    X x;
-    Y y;
+    public X x;
+    public Y y;
 
     public Pair(X x, Y y) {
         this.x = x;

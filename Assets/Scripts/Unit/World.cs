@@ -5,12 +5,12 @@ using UnityEngine;
 public class World : MonoBehaviour
 {
     private string worldName;
-    private Dictionary<Pair<int, int>, Chunk> chunks;
+    private Map<Pair<int, int>, Chunk> chunks = new Map<Pair<int, int>, Chunk>();
+    private ArrayList Generater = new ArrayList();
 
     public World(string name)
     {
         this.worldName = name;
-        chunks = new Dictionary<Pair<int, int>, Chunk>();
     }
 
     public string GetName()
@@ -18,9 +18,28 @@ public class World : MonoBehaviour
         return worldName;
     }
 
-    public static void SetBlock(Block block, Location location)
+    public Chunk GetChunk(Pair<int, int> postion)
     {
-        location.chunk.SetBlock(block, location);
+        if (chunks.ContainKey(postion))
+        {
+            return chunks.Get(postion);
+        }
+        else
+        {
+            return LoadChunk(postion);
+        }
+    }
+
+    public Chunk LoadChunk(Pair<int, int> postion)
+    {
+        Chunk chunk = new Chunk(this, new Vector2(postion.x, postion.y));
+        foreach (IWorldGenerater generater in Generater)
+        {
+            generater.Generate(this, chunk);
+        }
+        chunk.EndLoad();
+        chunks.Put(postion, chunk);
+        return chunk;
     }
 
     public override bool Equals(object other)

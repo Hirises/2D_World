@@ -7,7 +7,7 @@ public class UnityLogger : MonoBehaviour
     {
         string warningMessage = message;
 
-        StackTrace stack = new StackTrace();
+        StackTrace stack = new StackTrace(new StackFrame(true));
         for(int i = 0; i < stack.FrameCount; i++)
         {
             StackFrame frame = stack.GetFrame(i);

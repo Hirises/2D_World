@@ -23,28 +23,4 @@ public class Block : MonoBehaviour
         this.location = location;
         isplaced = false;
     }
-
-    public void Place()
-    {
-        if (!isplaced)
-        {
-            World.SetBlock(this, location);
-        }
-        else
-        {
-            UnityLogger.PrintStackTrace("The block is already placed!");
-        }
-    }
-
-    public void RemoveObject()
-    {
-        if (isplaced)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            UnityLogger.PrintStackTrace("The block is not placed!");
-        }
-    }
 }

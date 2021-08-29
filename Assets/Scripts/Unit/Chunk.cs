@@ -14,7 +14,13 @@ public class Chunk {
         this.postion = postion;
         isload = false;
         Block[,] blocks = new Block[16, 16];
-        //TODO blocks √ ±‚»≠
+        for(int x = 0; x < 16; x++)
+        {
+            for (int y = 0;  y< 16; y++)
+            {
+                blocks[x, y] = new Block(new MaterialData(Material.None, 0), new Location(world, this, new Vector2(x, y)));
+            }
+        }
     }
 
     public Chunk(World world, Vector2 postion, Block[,] blocks) : this(world, postion)
@@ -22,14 +28,18 @@ public class Chunk {
         this.blocks = blocks;
     }
 
-    public void SetBlock(Block block, Location location)
+    public void EndLoad()
     {
-        int x = (int)Mathf.Round(location.postion.x);
-        int y = (int)Mathf.Round(location.postion.y);
+        isload = true;
+    }
+
+    public void SetBlock(Block block, Vector2 location)
+    {
+        int x = (int)Mathf.Round(location.x);
+        int y = (int)Mathf.Round(location.y);
         if (isload)
         {
             Block previous = blocks[x, y];
-            previous
         }
         blocks[x, y] = block;
     }

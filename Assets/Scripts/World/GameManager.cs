@@ -4,33 +4,57 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private static Dictionary<string, World> worlds;
+    private static Map<string, World> worlds = new Map<string, World>();
     private static Player player;
+    private static CameraController cameraController;
+    private static Settings settings;
+
+    private void Awake()
+    {
+        settings = new Settings();
+        worlds.Put("OverWorld", new World("OverWorld"));
+        World mainWorld = worlds.Get("OverWorld");
+        player = new Player(mainWorld);
+        cameraController = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraController>();
+        cameraController.SetTargetPlayer(player);
+        for (int x = -4; x < 4; x++)
+        {
+            for (int y = -4; y < 4; y++)
+            {
+                mainWorld.LoadChunk(new Pair<int, int>(x, y));
+            }
+        }
+        GridManager.SetupGrid(mainWorld, Vector2.zero);
+    }
+
+    public static Settings GetSettings()
+    {
+        return settings;
+    }
 
     public static World GetWorld(string name)
     {
-        worlds.TryGetValue(name, out World output);
-        return output;
+        return worlds.Get(name);
     }
 
-    public static bool AddWorld(string name, World world)
+    public static bool AddWorld(World world)
     {
-        if (worlds.ContainsKey(name)) { return false; }
-        worlds.Add(name, world);
+        if (worlds.ContainKey(world.GetName())) { return false; }
+        worlds.Put(world.GetName(), world);
         return true;
     }
 
     public static bool RemoveWorld(string name)
     {
-        if(!worlds.ContainsKey(name)) { return false; }
-        worlds.Remove(name);
+        if(!worlds.ContainKey(name)) { return false; }
+        worlds.RemoveKey(name);
         return true;
     }
 
     public static bool RemoveWorld(World world)
     {
-        if (!worlds.ContainsValue(world)) { return false; }
-        worlds.Remove(world.GetName());
+        if (!worlds.ContainValue(world)) { return false; }
+        worlds.RemoveKey(world.GetName());
         return true;
     }
 

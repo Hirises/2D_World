@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8622481599503011167}
   - component: {fileID: 1830918409303197546}
-  - component: {fileID: 684555168458875350}
+  - component: {fileID: 3540330362246200777}
   m_Layer: 0
-  m_Name: Block
+  m_Name: Tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &684555168458875350
+--- !u!114 &3540330362246200777
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,12 +93,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7158969150500728085}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55230acc4cea9b8458ba3b549d1e4241, type: 3}
+  m_Script: {fileID: 11500000, guid: d5fd31ef4b76ead49869b0062df967fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  postion: {x: 0, y: 0}
-  material: 0
-  renderer: {fileID: 1830918409303197546}
+  material: {fileID: 0}
+  spriteRenderer: {fileID: 1830918409303197546}
   variants:
   - {fileID: 21300000, guid: bfe8881aacbe6494ca58e65942605ec5, type: 3}
   curVariants: 0

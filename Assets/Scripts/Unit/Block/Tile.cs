@@ -15,6 +15,4 @@ public class Tile : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     private int curVariants;
-    private Object perfeb;
-    private bool isplaced;
 }

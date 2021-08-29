@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IWorldGenerater
 {
-    void generate();
+    void Generate(World world, Chunk chunk);
 }
