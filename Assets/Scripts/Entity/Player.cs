@@ -4,15 +4,35 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private World world;
+    private Location location;
+    private bool isremote;
     [SerializeField]
     private PlayerController controller;
 
-    public Player(World world)
+    public Player(Location location, bool isremote)
     {
-        this.world = world;
-        controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        controller.player = this;
+        this.location = location;
+        this.isremote = isremote;
+        if (isremote)
+        {
+            controller = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+            controller.player = this;
+        }
+    }
+
+    public bool IsRemote()
+    {
+        return isremote;
+    }
+
+    public Location GetLocation()
+    {
+        return location;
+    }
+
+    public void UpdateLocation()
+    {
+        location = new Location(location.world, controller.transform.position);
     }
 
     public PlayerController GetController()

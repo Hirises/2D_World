@@ -7,11 +7,12 @@ public class GameManager : MonoBehaviour
     private static Map<string, World> worlds = new Map<string, World>();
     private static Player player;
     private static CameraController cameraController;
-    private static Settings settings;
+    private static Settings settings = new Settings();
+    private static Adapter adapter;
 
     private void Awake()
     {
-        settings = new Settings();
+        adapter = this.GetComponent<Adapter>();
         worlds.Put("OverWorld", new World("OverWorld"));
         World mainWorld = worlds.Get("OverWorld");
         player = new Player(mainWorld);
@@ -30,6 +31,11 @@ public class GameManager : MonoBehaviour
     public static Settings GetSettings()
     {
         return settings;
+    }
+
+    public static Adapter GetAdapter()
+    {
+        return adapter;
     }
 
     public static World GetWorld(string name)

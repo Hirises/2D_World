@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     {
         GetMoveInput();
         Move();
+        player.UpdateLocation();
     }
 
     private void GetMoveInput()

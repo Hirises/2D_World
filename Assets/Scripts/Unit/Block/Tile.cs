@@ -15,4 +15,9 @@ public class Tile : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     private int curVariants;
+
+    public Tile()
+    {
+
+    }
 }

@@ -42,6 +42,16 @@ public class World : MonoBehaviour
         return chunk;
     }
 
+    public Chunk GetChunkAt(Vector2 postion)
+    {
+        return GetChunkAt(postion.x, postion.y);
+    }
+
+    public Chunk GetChunkAt(float x, float y)
+    {
+        return GetChunk(new Pair<int, int>(Mathf.FloorToInt(x) / 8, Mathf.FloorToInt(y) / 8));
+    }
+
     public override bool Equals(object other)
     {
         World target = (World)other;

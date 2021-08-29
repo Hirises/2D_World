@@ -4,14 +4,36 @@ using UnityEngine;
 
 public class Chunk {
     public World world;
-    public Vector2 postion;
+    public Pair<int, int> worldPostion;
+    public int x
+    {
+        get
+        {
+            return worldPostion.x;
+        }
+        set
+        {
+            worldPostion.x = value;
+        }
+    }
+    public int y
+    {
+        get
+        {
+            return worldPostion.y;
+        }
+        set
+        {
+            worldPostion.y = value;
+        }
+    }
     public Block[,] blocks;
     private bool isload;
 
-    public Chunk(World world, Vector2 postion)
+    public Chunk(World world, Pair<int, int> postion)
     {
         this.world = world;
-        this.postion = postion;
+        this.worldPostion = postion;
         isload = false;
         Block[,] blocks = new Block[16, 16];
         for(int x = 0; x < 16; x++)
@@ -23,7 +45,7 @@ public class Chunk {
         }
     }
 
-    public Chunk(World world, Vector2 postion, Block[,] blocks) : this(world, postion)
+    public Chunk(World world, Pair<int, int> postion, Block[,] blocks) : this(world, postion)
     {
         this.blocks = blocks;
     }
@@ -49,13 +71,13 @@ public class Chunk {
         Chunk target = (Chunk)obj;
 
         if (!world.Equals(target.world)) { return false; }
-        if (!postion.Equals(target.postion)) { return false; }
+        if (!worldPostion.Equals(target.worldPostion)) { return false; }
 
         return true;
     }
 
     public override string ToString()
     {
-        return world.ToString() + ' ' + postion.x + " ," + postion.y;
+        return world.ToString() + ' ' + worldPostion.x + " ," + worldPostion.y;
     }
 }
